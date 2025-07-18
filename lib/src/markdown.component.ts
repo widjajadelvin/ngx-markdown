@@ -191,7 +191,7 @@ export class MarkdownComponent implements OnChanges, AfterViewInit, OnDestroy {
   }
   // Add this property to your MarkdownComponent class to track the previous state
   private lastParsedHtml = '';
-
+  private counter = 1;
   async render(markdown: string, decodeHtml = false): Promise<void> {
     // These options remain the same
     const parsedOptions: ParseOptions = {
@@ -201,7 +201,10 @@ export class MarkdownComponent implements OnChanges, AfterViewInit, OnDestroy {
       mermaid: this.mermaid,
       disableSanitizer: this.disableSanitizer,
     };
-
+    this.counter++;
+    if (this.counter < 100) {
+      console.log('yo im rendered');
+    }
     const renderOptions: RenderOptions = {
       clipboard: this.clipboard,
       clipboardOptions: this.getClipboardOptions(),
